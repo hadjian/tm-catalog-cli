@@ -5,9 +5,9 @@ name: Go
 
 on:
   push:
-    branches: [ "chore/workflow-create-release-tag" ]
+    branches: [ "chore/workflow-create-release-on-tag" ]
   pull_request:
-    branches: [ "chore/workflow-create-release-tag" ]
+    branches: [ "chore/workflow-create-release-on-tag" ]
 
 jobs:
 
