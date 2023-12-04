@@ -32,3 +32,9 @@ jobs:
         export GOOS=linux
         export GARCH=amd64
         CGO_ENABLED=0 go build -o tm_catalog_cli-${GOOS}_${GARCH}      
+
+    - name: Release
+      if: startsWith(github.ref, 'refs/tags')
+      with:
+        files:
+          tm_catalog_cli-linux_amd64
