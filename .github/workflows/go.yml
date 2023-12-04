@@ -8,6 +8,9 @@ on:
     branches: [ "chore/workflow-create-release-on-tag" ]
   pull_request:
     branches: [ "chore/workflow-create-release-on-tag" ]
+  create:
+    tags:
+      - 'v*.*.*'
 
 jobs:
 
