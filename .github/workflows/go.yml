@@ -5,9 +5,9 @@ name: Go
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "chore/workflow-create-release-tag" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "chore/workflow-create-release-tag" ]
 
 jobs:
 
@@ -24,8 +24,11 @@ jobs:
     - name: Check Golang imports order and formatting
       uses: Jerome1337/goimports-action@v1.0.3
 
-    - name: Build
-      run: CGO_ENABLED=0 go build -v ./...
-
     - name: Test
       run: CGO_ENABLED=0 go test -v ./...
+
+    - name: Build Linux
+      run: |
+        export GOOS=linux
+        export GARCH=amd64
+        CGO_ENABLED=0 go build -o tm_catalog_cli-${GOOS}_${GARCH}      
