@@ -44,7 +44,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files:
-          tm_catalog_cli-linux_amd64
+          tm-catalog-cli-linux_amd64
         token: ${{ secrets.GITHUB_TOKEN }}
 
   docker:
