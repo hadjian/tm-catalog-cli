@@ -61,14 +61,12 @@ jobs:
     env:
       REGISTRY: ghcr.io
       IMAGE_NAME: ${{ github.repository }}
+      BINARY: ${{ github.repository }}-${{ env.GOOS }}_${{ env.GARCH }}      
 
     permissions:
       contents: read
       packages: write
 
-    env:
-      BINARY: ${{ github.repository }}-${{ env.GOOS }}_${{ env.GARCH }}
-      
     steps:
       - uses: actions/checkout@v3
       
