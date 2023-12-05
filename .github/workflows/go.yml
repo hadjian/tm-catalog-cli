@@ -42,3 +42,4 @@ jobs:
       with:
         files:
           tm_catalog_cli-linux_amd64
+        token: ${{ secrets.GITHUB_TOKEN }}
