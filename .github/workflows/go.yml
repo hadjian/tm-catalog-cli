@@ -48,7 +48,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
 
   docker:
-    if: startsWith(github.ref, 'refs/tags')
+#    if: startsWith(github.ref, 'refs/tags')
     needs: build
     runs-on: ubuntu-latest
 
@@ -76,11 +76,15 @@ jobs:
 
       - name: Set up docker buildx
         uses: docker/setup-buildx-action@v3
-          
+
+      - name: Download tmc-catalog-cli
+        run: /bin/sh ./docker/download-cli.sh
+        
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
         with:
           context: .
+          file: ./docker/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
