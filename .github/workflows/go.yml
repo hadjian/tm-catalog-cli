@@ -80,7 +80,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Download tmc-catalog-cli
-        run: /bin/sh ./docker/download-cli.sh
+        run: /bin/sh ./docker/download-cli.sh; mv tm_catalog_cli-linux_amd64 tm_catalog_cli
         
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
