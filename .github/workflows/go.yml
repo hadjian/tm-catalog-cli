@@ -6,7 +6,7 @@ name: Go
 env:
   GOOS: linux
   GOARCH: amd64
-  BINARY: ${{ github.repository }}-${{ GOOS }}_${{ GARCH }}
+
 
 on:
   push:
@@ -23,7 +23,10 @@ jobs:
 
     permissions:
       contents: write
-    
+
+    env:
+      BINARY: ${{ github.repository }}-${{ env.GOOS }}_${{ env.GARCH }}      
+      
     steps:
     - uses: actions/checkout@v3
 
@@ -63,6 +66,9 @@ jobs:
       contents: read
       packages: write
 
+    env:
+      BINARY: ${{ github.repository }}-${{ env.GOOS }}_${{ env.GARCH }}
+      
     steps:
       - uses: actions/checkout@v3
       
