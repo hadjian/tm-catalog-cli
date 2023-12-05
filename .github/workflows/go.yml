@@ -40,7 +40,7 @@ jobs:
 
     - name: Build Linux
       run: |
-        CGO_ENABLED=0 go build -o ${{ env.BINARY }}
+        CGO_ENABLED=0 go build -o ${{ github.repository }}-${{ env.GOOS }}_${{ env.GARCH }}
 
     - name: Release
       if: startsWith(github.ref, 'refs/tags')
