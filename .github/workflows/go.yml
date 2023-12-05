@@ -40,13 +40,13 @@ jobs:
 
     - name: Build Linux
       run: |
-        CGO_ENABLED=0 go build -o ${{ github.repository }}-${{ env.GOOS }}_${{ env.GARCH }}
+        CGO_ENABLED=0 go build -o ${{ github.repository }}-${{ env.GOOS }}_${{ env.GOARCH }}
 
     - name: Release
       if: startsWith(github.ref, 'refs/tags')
       uses: softprops/action-gh-release@v1
       with:
-        files: ${{ github.repository }}-${{ env.GOOS }}_${{ env.GARCH }}
+        files: ${{ github.repository }}-${{ env.GOOS }}_${{ env.GOARCH }}
         token: ${{ secrets.GITHUB_TOKEN }}
 
   docker:
@@ -82,7 +82,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Download tmc-catalog-cli
-        run: /bin/sh ./docker/download-cli.sh; mv ${{ github.repository }}-${{ env.GOOS }}_${{ env.GARCH }} ${{ env.IMAGE_NAME }}
+        run: /bin/sh ./docker/download-cli.sh; mv ${{ github.repository }}-${{ env.GOOS }}_${{ env.GOARCH }} ${{ env.IMAGE_NAME }}
         
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
