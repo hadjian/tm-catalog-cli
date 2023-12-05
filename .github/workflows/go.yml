@@ -6,7 +6,7 @@ name: Go
 env:
   GOOS: linux
   GOARCH: amd64
-  BINARY: ${{ github.repository }}-${{ env.GOOS }}_${{ env.GARCH }}
+  BINARY: ${{ github.repository }}-${{ GOOS }}_${{ GARCH }}
 
 on:
   push:
