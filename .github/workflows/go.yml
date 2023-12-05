@@ -27,7 +27,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Construct binary name
-      run: echo "BINARY=${{github.repository#*/}}-${{env.GOOS}}_${{env.GOARCH}}" >> $GITHUB_ENV
+      run: echo "BINARY=${{ github.event.repository.name }}-${{env.GOOS}}_${{env.GOARCH}}" >> $GITHUB_ENV
       
     - name: Set up Go
       uses: actions/setup-go@v4
@@ -62,13 +62,13 @@ jobs:
       
     env:
       REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}
+      IMAGE_NAME: ${{ github.event.repository.name }}
       
     steps:
       - uses: actions/checkout@v3
 
       - name: Construct binary name
-        run: echo "BINARY=${{github.repository#*/}}-${{env.GOOS}}_${{env.GOARCH}}" >> $GITHUB_ENV
+        run: echo "BINARY=${{ github.event.repository.name }}-${{env.GOOS}}_${{env.GOARCH}}" >> $GITHUB_ENV
 
         
       - name: Log in to the Container registry
@@ -88,7 +88,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Download tmc-catalog-cli
-        run: /bin/sh ./docker/download-cli.sh; mv ${{ env.BINARY }} ${{ github.repository#*/ }}
+        run: /bin/sh ./docker/download-cli.sh; mv ${{ env.BINARY }} ${{ github.event.repository.name }}
         
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
