@@ -1,8 +1,7 @@
 FROM alpine:latest
 
-ENV SERVER_IP localhost
-ENV SERVER_PORT 8080
-
+ENV SERVER_IP=localhost
+ENV SERVER_PORT=8080
 
 RUN apk update \
  && apk add --no-cache curl jq \
@@ -16,4 +15,4 @@ RUN mv /tm-catalog-cli /thingmodels/
 RUN chmod 755 /thingmodels/tm-catalog-cli
 RUN /thingmodels/tm-catalog-cli remote add --type file catalog /thingmodels
 RUN /thingmodels/tm-catalog-cli remote set-default catalog
-ENTRYPOINT ["/thingmodels/tm-catalog-cli", "serve",  "--host", "SERVER_IP", "--port", "$SERVER_PORT"]
+ENTRYPOINT /thingmodels/tm-catalog-cli serve --host ${SERVER_IP} --port ${SERVER_PORT}
