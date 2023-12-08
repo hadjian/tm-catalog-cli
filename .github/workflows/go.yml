@@ -87,9 +87,6 @@ jobs:
       - name: Set up docker buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Download tmc-catalog-cli
-        run: /bin/sh ./docker/download-cli.sh; mv ${{ env.BINARY }} ${{ github.event.repository.name }}
-        
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
         with:
