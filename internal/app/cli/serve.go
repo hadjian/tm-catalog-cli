@@ -7,6 +7,7 @@ import (
 	nethttp "net/http"
 	"net/url"
 
+	"github.com/gorilla/handlers"
 	"github.com/web-of-things-open-source/tm-catalog-cli/internal/app/http"
 	"github.com/web-of-things-open-source/tm-catalog-cli/internal/remotes"
 )
@@ -43,8 +44,11 @@ func Serve(host, port, urlCtxRoot, remote string) error {
 	}
 	http.HandlerWithOptions(handler, options)
 
+	headersOk := handlers.AllowedHeaders([]string{"Content-Type", "X-Amz-Date", "Authorization", "X-Api-Key", "X-Amz-Security-Token", "X-Requested-With", "X-Partition,X-user-role"})
+	originsOk := handlers.AllowedOrigins([]string{"*"})
+	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
 	s := &nethttp.Server{
-		Handler: r,
+		Handler: handlers.CORS(headersOk, originsOk, methodsOk)(r),
 		Addr:    net.JoinHostPort(host, port),
 	}
 
