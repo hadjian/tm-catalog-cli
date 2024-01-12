@@ -37,15 +37,16 @@ jobs:
     - name: Test
       run: CGO_ENABLED=0 go test -v ./...
 
-    - name: Build Linux
+    - name: Compile
       run: |
+        echo "FILE_NAME ${FILENAME_PREFIX}"
         bash ./build/compile.sh 
 
     - name: Release-Notes
       if: startsWith(github.ref, 'refs/tags')
       run: |
         echo "Extracting release notes for version ${{github.ref}}"
-        export VERSION=${{github.ref}}
+        export VERSION=${{github.ref_name}}
         bash build/extract-release-notes.sh >> release-notes.md
 
     - name: Release
