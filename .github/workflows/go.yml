@@ -4,8 +4,8 @@
 name: Go
 
 env:
-  GOOS: linux
-  GOARCH: amd64
+  FILENAME_PREFIX: ${{ github.event.repository.name }}
+  GOOS_GARCH_TARGETS: "linux,amd64;darwin,amd64;darwin,arm64;windows,amd64;windows,arm64" 
 
 on:
   push:
@@ -26,9 +26,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Construct binary name
-      run: echo "BINARY=${{ github.event.repository.name }}-${{env.GOOS}}_${{env.GOARCH}}" >> $GITHUB_ENV
-      
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
@@ -42,17 +39,24 @@ jobs:
 
     - name: Build Linux
       run: |
-        CGO_ENABLED=0 go build -o ${{ env.BINARY }}
+        bash ./build/compile.sh 
+
+    - name: Release-Notes
+      if: startsWith(github.ref, 'refs/tags')
+      run: |
+        echo "Extracting release notes for version ${{github.ref}}"
+        VERSION=${{github.ref}} build/extract-release-notes.sh >> release-notes.md
 
     - name: Release
       if: startsWith(github.ref, 'refs/tags')
       uses: softprops/action-gh-release@v1
       with:
-        files: ${{ env.BINARY }}
+        body_path: release-notes.md
+        files: ${{ env.FILENAME_PREFIX }}*
         token: ${{ secrets.GITHUB_TOKEN }}
 
   docker:
-#    if: startsWith(github.ref, 'refs/tags')
+    if: false
     needs: build
     runs-on: ubuntu-latest
 
