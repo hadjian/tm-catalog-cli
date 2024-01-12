@@ -45,7 +45,8 @@ jobs:
       if: startsWith(github.ref, 'refs/tags')
       run: |
         echo "Extracting release notes for version ${{github.ref}}"
-        VERSION=${{github.ref}} build/extract-release-notes.sh >> release-notes.md
+        export VERSION=${{github.ref}}
+        bash build/extract-release-notes.sh >> release-notes.md
 
     - name: Release
       if: startsWith(github.ref, 'refs/tags')
