@@ -24,8 +24,7 @@ WORKDIR $WORKDIR
 
 # fetch the latest tm-catalog-cli for linux
 COPY ./docker/download-cli.sh .
-#RUN ./download-cli.sh; rm ./download-cli.sh
-COPY ./tm-catalog-cli .
+RUN ./download-cli.sh; rm ./download-cli.sh
 RUN chmod 755 ./tm-catalog-cli; mv ./tm-catalog-cli /usr/bin; 
 RUN tm-catalog-cli remote add --type file catalog $WORKDIR
 
