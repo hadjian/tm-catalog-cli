@@ -2,7 +2,6 @@
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/hadjian/tm-catalog-cli)
 
-![tm-catalog logo](docs/media/tm-catalog-logo.svg)
 <img src="https://github.com/hadjian/tm-catalog-cli/raw/main/docs/media/tm-catalog-logo.svg" width="100">
 
 ---
