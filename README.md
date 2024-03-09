@@ -2,7 +2,7 @@
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/hadjian/tm-catalog-cli)
 
-<img src="https://github.com/hadjian/tm-catalog-cli/raw/main/docs/media/tm-catalog-logo.svg" style="width: 100">
+![Thing Model Catalog Logo](https://github.com/hadjian/tm-catalog-cli/raw/main/docs/media/tm-catalog-logo.svg)
 
 ---
 Find, use and contribute device descriptions for industrial IoT devices!
