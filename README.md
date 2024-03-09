@@ -56,11 +56,48 @@ tm-catalog-cli remote add --type http thingmodels 'https://raw.githubusercontent
 tm-catalog-cli list
 ```
 
+The listed names are formatted as follows
+
+```
+<author>/<manufacturer>/<model>
+```
+
+You can specify a part of that path after the ```list``` command to filter the list for only parts of the list tree (use tab to auto-complete path parts):
+
+```
+tm-catalog-cli list nexus-x/siemens
+```
+
+## List Versions
+
+Every model entry in the list may contain multiple versions, reflecting the evolution of the Thing Model (bugfixes, additions, changes in the device itself ...). List the available versions with the ```versions``` command:
+
+```bash
+tm-catalog-cli versions <name>
+```
+
+## Fetch a Thing Model
+
+Like what you see? Fetch and store locally using the ```fetch``` command. It will print the Thing Model to stdout to enable unix-like piping:
+
+```bash
+tm-catalog-cli fetch <NAME>
+```
+
+If you just specify the name, the cli will fetch the latest version automatically. If you want to fetch a specific version, append the version string to the name, separated by a colon:
+
+```bash
+tm-catalog-cli fetch <NAME>:<SEMVER>
+```
+
+To store the Thing Model locally instead of printing to stdout, specify the ```-o``` flag and point it to a directory:
+
+```bash
+tm-catalog-cli fetch <NAME> -o .
+```
 
 
-
-
-
+## Create a Thing Description
 
 
 
