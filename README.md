@@ -1,6 +1,6 @@
 # Thing Model Catalog CLI
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/hadjian/tm-catalog-cli)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/hadjian/tm-catalog-cli)](https://github.com/web-of-things-open-source/tm-catalog-cli/releases)
 
 ![Thing Model Catalog Logo](https://github.com/hadjian/tm-catalog-cli/raw/main/docs/media/tm-catalog-logo.svg)
 
@@ -68,7 +68,7 @@ You can specify a part of that path after the ```list``` command to filter the l
 tm-catalog-cli list nexus-x/siemens
 ```
 
-## List Versions
+### List Versions
 
 Every model entry in the list may contain multiple versions, reflecting the evolution of the Thing Model (bugfixes, additions, changes in the device itself ...). List the available versions with the ```versions``` command:
 
@@ -76,7 +76,7 @@ Every model entry in the list may contain multiple versions, reflecting the evol
 tm-catalog-cli versions <name>
 ```
 
-## Fetch a Thing Model
+### Fetch a Thing Model
 
 Like what you see? Fetch and store locally using the ```fetch``` command. It will print the Thing Model to stdout to enable unix-like piping:
 
@@ -95,15 +95,6 @@ To store the Thing Model locally instead of printing to stdout, specify the ```-
 ```bash
 tm-catalog-cli fetch <NAME> -o .
 ```
-
-
-## Create a Thing Description
-
-
-
-
-
-
 
 
 [1]: https://www.w3.org/TR/wot-thing-description11/
